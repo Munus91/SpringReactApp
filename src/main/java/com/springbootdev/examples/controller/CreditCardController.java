@@ -46,23 +46,22 @@ public class CreditCardController {
 
          String number = card_number;
 
-        Iterator <CreditCard> itr = findAll().iterator();
-        //проверка по номеру карты в репозитории
+         try {
+             if (CreditCardRepository.findByCardNum(number).get(0).getCardNum() != null) {
 
-        while(itr.hasNext()) {
+                 result_of_check = "CARD DETECTED";
+             } else {
 
-            CreditCard temp = itr.next();
+                 result_of_check = "CARD NOT FOUND";
 
-            if (number.equals( temp.getCardNum())) {
-                result_of_check="CARD DETECTED";
-                break;
+             }
+         }catch (Exception e)
+         {
+             result_of_check = "CARD NOT FOUND";
 
-            }
-            else{
-                result_of_check="CARD NOT FOUND";
-            }
+         }
 
-        }
+       
 
        return result_of_check;
     }
