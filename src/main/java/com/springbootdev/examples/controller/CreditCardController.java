@@ -55,6 +55,7 @@ public class CreditCardController {
 
             if (number.equals( temp.getCardNum())) {
                 result_of_check="CARD DETECTED";
+                break;
 
             }
             else{
